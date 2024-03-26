@@ -30,10 +30,10 @@ def select_model(args, device):
 
     elif model_id == 28:
         from models.team28_MSN import MSN
-        name, data_range = f"{model_id:02}_MSN", 255.0
+        name, data_range = f"{model_id:02}_MSN", 1.0
         model_path = os.path.join('model_zoo', 'team28_MSN.pth')
         model = MSN()
-        model.load_state_dict(torch.load(model_path), strict=True)
+        model.load_state_dict(torch.load(model_path)['params_ema'], strict=True)
     else:
         raise NotImplementedError(f"Model {model_id} is not implemented.")
 
